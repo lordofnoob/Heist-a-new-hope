@@ -7,15 +7,21 @@ using UnityEngine.AI;
 public class Mb_Player : MonoBehaviour {
 
     public Sc_Charaspec characterProperty;
-	public Mb_Player player;
+    [SerializeField] NavMeshAgent agent;
+    public Mb_Player player;
     public Color highlightedColor, selectedColor;
 
+    [Header("Hostage")]
     public List<Mb_IAHostage> capturedHostages = new List<Mb_IAHostage>();
 
-    public bool highlighted = false;
-    [SerializeField]private bool isSelected = false;
-    [SerializeField] NavMeshAgent agent;
-    public bool IsSelected { 
+
+    [Header("Items")]
+    public List<Sc_Items> itemsHold = new List<Sc_Items>();
+        
+    [HideInInspector] public bool highlighted = false;
+    [HideInInspector] [SerializeField] private bool isSelected = false;
+
+    [HideInInspector] public bool IsSelected { 
         set
         {
             switch (value)
@@ -128,6 +134,16 @@ public class Mb_Player : MonoBehaviour {
             
                 Interact();
         }
+    }
+
+    public void AddItem(Sc_Items itemToAdd)
+    {
+        itemsHold.Add(itemToAdd);
+    }
+
+    public void DropItem(Sc_Items itemToDrop)
+    {
+        itemsHold.Remove(itemToDrop);
     }
 
     public void SetNextInteraction(Mb_Trial trialToUse)

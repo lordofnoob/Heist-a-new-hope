@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Sc_Chara_Interface : MonoBehaviour
+public class In_Chara_Interface : MonoBehaviour
 {
     [Header("Cosmetic")]
     [SerializeField] TextMeshProUGUI charaName;

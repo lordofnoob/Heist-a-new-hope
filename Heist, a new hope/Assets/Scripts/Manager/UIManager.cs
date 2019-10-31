@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     UIManager Instance;
 
     [Header("AllUiSlots")]
-    [SerializeField] Sc_Chara_Interface[] allCharaCards;
+    [SerializeField] In_Chara_Interface[] allCharaCards;
     [SerializeField] Image chaosBar;
     [SerializeField] Text timeElpased;
 

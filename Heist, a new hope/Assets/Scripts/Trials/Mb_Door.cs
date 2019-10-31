@@ -5,6 +5,7 @@ using UnityEngine;
 public class Mb_Door : Mb_Trial
 {
     public Animation door;
+    public Tile tileAssociated;
 
     public override void DoThings()
     {
@@ -13,6 +14,7 @@ public class Mb_Door : Mb_Trial
             listOfUser[i].state = Mb_Player.StateOfAction.Idle;
         }
         listOfUser.Clear();
+       // tileAssociated.avaible = !tileAssociated.avaible;
         door.Play();
     }        
 }

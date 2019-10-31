@@ -28,25 +28,27 @@ public class Mb_Trial : MonoBehaviour
 
      public void StartInteracting()
     {
-        foreach (Mb_Player player in listOfUser)
-        {
-            Debug.Log(player.characterProperty);
-            int length = player.characterProperty.characterSkills.Length;
-            Debug.Log(length);
-            for (int i = 0; i < player.characterProperty.characterSkills.Length; i++)
-                for (int y=0; y < trialParameters.skillToUse.Length; y++)
-                    if(player.characterProperty.characterSkills[i] == trialParameters.skillToUse[y].associatedSkill)
-                    {
-                        if (definitiveModifier > (1 - trialParameters.skillToUse[y].associatedReduction))
-                        {
-                            definitiveModifier = (1 - trialParameters.skillToUse[y].associatedReduction);
-                        }
-                       else if (definitiveModifier <= (definitiveModifier- trialParameters.skillToUse[y].associatedReduction) && definitiveModifier>=1)
-                        {
-                            definitiveModifier = (1 - trialParameters.skillToUse[y].associatedReduction);
-                        }
 
-                    }
+        if (CheckCondition())
+        {
+            foreach (Mb_Player player in listOfUser)
+            {
+                int length = player.characterProperty.characterSkills.Length;
+                for (int i = 0; i < player.characterProperty.characterSkills.Length; i++)
+                    for (int y = 0; y < trialParameters.skillToUse.Length; y++)
+                        if (player.characterProperty.characterSkills[i] == trialParameters.skillToUse[y].associatedSkill)
+                        {
+                            if (definitiveModifier > (1 - trialParameters.skillToUse[y].associatedReduction))
+                            {
+                                definitiveModifier = (1 - trialParameters.skillToUse[y].associatedReduction);
+                            }
+                            else if (definitiveModifier <= (definitiveModifier - trialParameters.skillToUse[y].associatedReduction) && definitiveModifier >= 1)
+                            {
+                                definitiveModifier = (1 - trialParameters.skillToUse[y].associatedReduction);
+                            }
+
+                        }
+            }
         }
 
         finalTimeToSpendOn = trialParameters.timeToAccomplishTrial* definitiveModifier;
@@ -126,5 +128,10 @@ public class Mb_Trial : MonoBehaviour
         }
         else
             ResetValues();
+    }
+
+    public virtual bool CheckCondition()
+    {
+        return true;
     }
 }
