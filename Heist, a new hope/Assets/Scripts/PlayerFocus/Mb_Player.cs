@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class Mb_Player : MonoBehaviour {
+public class Mb_Player : Mb_Poolable {
 
     public Sc_Charaspec characterProperty;
     [SerializeField] NavMeshAgent agent;

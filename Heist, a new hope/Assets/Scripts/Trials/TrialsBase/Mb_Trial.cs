@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Mb_Trial : MonoBehaviour
+public class Mb_Trial : Mb_Poolable
 {
     [Header("Parameters")]
     public Sc_TrialDefinition trialParameters;

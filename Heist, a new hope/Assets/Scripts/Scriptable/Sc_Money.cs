@@ -7,6 +7,4 @@ using UnityEngine;
 public class Sc_Money : Sc_Items
 {
     public float valueOfTheItem;
-
-
 }
