@@ -53,11 +53,13 @@ public class Ma_PlayerManager : MonoBehaviour
             {
                 if (hit.transform.CompareTag("Tile") && selectedPlayer != null && selectedPlayer.state != Mb_Player.StateOfAction.Captured)
                 {
-                    hit.point += new Vector3(Ma_LevelManager.Instance.FreePrefab.transform.localScale.x / 2, 0f, Ma_LevelManager.Instance.FreePrefab.transform.localScale.x / 2);
+                    /*hit.point += new Vector3(Ma_LevelManager.Instance.FreePrefab.transform.localScale.x / 2, 0f, Ma_LevelManager.Instance.FreePrefab.transform.localScale.x / 2);
 
                     Vector3 gridPos = Vector3.zero;
                     gridPos.x = Mathf.Floor(hit.point.x / Ma_LevelManager.Instance.FreePrefab.transform.localScale.x) * Ma_LevelManager.Instance.FreePrefab.transform.localScale.x;
                     gridPos.z = Mathf.Floor(hit.point.z / Ma_LevelManager.Instance.FreePrefab.transform.localScale.x) * Ma_LevelManager.Instance.FreePrefab.transform.localScale.x;
+                    */
+
                     if (selectedPlayer.onGoingInteraction != null)
                     {
                         selectedPlayer.onGoingInteraction.listOfUser.Remove(selectedPlayer);
@@ -65,9 +67,8 @@ public class Ma_PlayerManager : MonoBehaviour
                         selectedPlayer.onGoingInteraction = null;
                     }
 
-
-                    selectedPlayer.MovePlayer(gridPos, 0f);
-                    selectedPlayer.state = Mb_Player.StateOfAction.Moving;
+                    List<Tile> ShortestPath = Ma_LevelManager.Instance.GetComponentInChildren<Pathfinder>().SearchForShortestPath(selectedPlayer.playerTile, hit.transform.GetComponent<Tile>());
+                    //selectedPlayer.MovePlayer(ShortestPath, 0f);
                 }
                 else if (hit.transform.CompareTag("Trial")  && selectedPlayer !=null && selectedPlayer.state != Mb_Player.StateOfAction.Captured && selectedPlayer.state!= Mb_Player.StateOfAction.Interacting)
                 {
@@ -86,7 +87,7 @@ public class Ma_PlayerManager : MonoBehaviour
                         else
                             positionToAccomplishDuty = targetTrial.positionToGo[targetTrial.listOfUser.Count].position;
 
-                        selectedPlayer.MovePlayer(positionToAccomplishDuty, 2f);
+                        //selectedPlayer.MovePlayer(positionToAccomplishDuty, 2f);
                         selectedPlayer.SetNextInteraction(targetTrial);
                     }
                     

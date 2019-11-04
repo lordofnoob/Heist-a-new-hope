@@ -7,6 +7,11 @@ public class Grid : MonoBehaviour
     public List<Tile> freeTiles = new List<Tile>();
     public Tile[,] tilemap = new Tile[20,20];
 
+    public void Awake()
+    {
+        //freeTiles.AddRange(GameObject.Find("Tiles").GetComponentsInChildren<Free>());
+    }
+
     public void BuildGridLevel(string[,] array)
     {
         Vector3 position = Vector3.zero;
@@ -20,14 +25,14 @@ public class Grid : MonoBehaviour
                 switch (array[row-1,column-1])
                 {
                     case "W":
-                        GameObject newWall = Instantiate(Ma_LevelManager.Instance.WallPrefab, position, new Quaternion(0f, 0f, 0f, 0f), GameObject.Find("Wall").transform);
+                        GameObject newWall = Instantiate(Ma_LevelManager.Instance.WallPrefab, position, new Quaternion(0f, 0f, 0f, 0f), GameObject.Find("Walls").transform);
                         newTile = newWall.GetComponent<Wall>();
                         newTile.row = row;
                         newTile.column = column;
                         break;
 
                     case "F":
-                        GameObject newFree = Instantiate(Ma_LevelManager.Instance.FreePrefab, position, new Quaternion(0f, 0f, 0f, 0f), GameObject.Find("Tile").transform);
+                        GameObject newFree = Instantiate(Ma_LevelManager.Instance.FreePrefab, position, new Quaternion(0f, 0f, 0f, 0f), GameObject.Find("Tiles").transform);
                         newTile = newFree.GetComponent<Free>();
                         newTile.row = row;
                         newTile.column = column;
@@ -35,7 +40,7 @@ public class Grid : MonoBehaviour
                         break;
 
                     case "P":
-                        GameObject newFreePlayer = Instantiate(Ma_LevelManager.Instance.FreePrefab, position, new Quaternion(0f, 0f, 0f, 0f), GameObject.Find("Tile").transform);
+                        GameObject newFreePlayer = Instantiate(Ma_LevelManager.Instance.FreePrefab, position, new Quaternion(0f, 0f, 0f, 0f), GameObject.Find("Tiles").transform);
                         newTile = newFreePlayer.GetComponent<Free>();
                         newTile.row = row;
                         newTile.column = column;
@@ -46,7 +51,7 @@ public class Grid : MonoBehaviour
                         break;
 
                     case "IA":
-                        GameObject newFreeIA = Instantiate(Ma_LevelManager.Instance.FreePrefab, position, new Quaternion(0f, 0f, 0f, 0f), GameObject.Find("Tile").transform);
+                        GameObject newFreeIA = Instantiate(Ma_LevelManager.Instance.FreePrefab, position, new Quaternion(0f, 0f, 0f, 0f), GameObject.Find("Tiles").transform);
                         newTile = newFreeIA.GetComponent<Free>();
                         newTile.row = row;
                         newTile.column = column;
@@ -78,14 +83,5 @@ public class Grid : MonoBehaviour
     {
         //print(row + " , " + column);
         return tilemap[row - 1, column - 1];
-    }
-
-    public void ResetVisitedTile()
-    {
-        foreach(Tile tile in freeTiles)
-        {
-            if (tile.Visited)
-                tile.Visited = false;
-        }
     }
 }

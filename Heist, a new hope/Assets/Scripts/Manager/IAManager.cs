@@ -29,7 +29,8 @@ public class IAManager : MonoBehaviour
             timer = 0f;
         }
         timer += Time.deltaTime;*/
-        UpdateHostageStress();
+        if(IAList.Count != 0)
+            UpdateHostageStress();
     }
 
     public void IAHostageFollowingPlayer(Mb_IAHostage hostage, Mb_Player p)

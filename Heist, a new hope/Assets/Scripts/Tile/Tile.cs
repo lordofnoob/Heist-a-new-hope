@@ -80,7 +80,7 @@ public class Tile : MonoBehaviour
         return res;
     }
 
-    void ModifyOutlines(Outlines.Mode mode, Color color, float width)
+    public void ModifyOutlines(Outlines.Mode mode, Color color, float width)
     {
         Outlines outline = gameObject.GetComponent<Outlines>();
         outline.OutlineMode = mode;
@@ -88,7 +88,7 @@ public class Tile : MonoBehaviour
         outline.OutlineWidth = width;
     }
 
-    void SetOutlinesEnabled(bool enabled)
+    public void SetOutlinesEnabled(bool enabled)
     {
         Outlines outline = gameObject.GetComponent<Outlines>();
         outline.enabled = enabled;

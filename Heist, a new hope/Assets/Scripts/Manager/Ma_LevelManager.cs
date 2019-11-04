@@ -12,8 +12,8 @@ public class Ma_LevelManager : MonoBehaviour
     public GameObject PlayerPrefab;
     public GameObject IAPrefab;
 
-    //public ClockManager clock;
-    public NavMeshSurface navMeshSurface;
+    public ClockManager clock;
+    //public NavMeshSurface navMeshSurface;
 
     private Grid grid;
     public Grid Grid { get { return grid; } }
@@ -21,14 +21,15 @@ public class Ma_LevelManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
+        clock = GetComponentInChildren<ClockManager>();
     }
 
     public void InitLevel()
     {
         //TO CHANGE
-        /*string[,] array = new string[,]{    { "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W"},
+        string[,] array = new string[,]{    { "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W"},
                                             { "W", "F", "F", "F", "F", "W", "F", "F", "F", "W", "F", "F", "F", "F", "F", "F", "F", "F", "F", "W"},
-                                            { "W", "F", "IA", "IA", "F", "W", "F", "W", "F", "W", "F", "W", "W", "F", "W", "F", "P", "P", "F", "W"},
+                                            { "W", "F", "F", "F", "F", "W", "F", "W", "F", "W", "F", "W", "W", "F", "W", "F", "P", "P", "F", "W"},
                                             { "W", "F", "F", "F", "F", "W", "W", "W", "F", "W", "F", "W", "F", "F", "W", "F", "W", "W", "F", "W"},
                                             { "W", "W", "F", "W", "W", "W", "W", "F", "F", "F", "F", "W", "W", "W", "W", "W", "F", "F", "F", "W"},
                                             { "W", "F", "F", "F", "W", "F", "W", "W", "F", "W", "F", "F", "F", "W", "F", "W", "W", "W", "F", "W"},
@@ -48,7 +49,7 @@ public class Ma_LevelManager : MonoBehaviour
                                             { "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W", "W"}
                                             };
         grid = gameObject.AddComponent<Grid>();
-        grid.BuildGridLevel(array);*/
-        navMeshSurface.BuildNavMesh();
+        grid.BuildGridLevel(array);
+        //navMeshSurface.BuildNavMesh();
     }
 }

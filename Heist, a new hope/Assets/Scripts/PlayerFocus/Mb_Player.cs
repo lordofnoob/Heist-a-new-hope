@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class Mb_Player : Mb_Poolable {
 
     public Sc_Charaspec characterProperty;
-    [SerializeField] NavMeshAgent agent;
+    //[SerializeField] NavMeshAgent agent;
     public Mb_Player player;
     public Color highlightedColor, selectedColor;
 
@@ -92,13 +92,13 @@ public class Mb_Player : Mb_Poolable {
         outline.enabled = enabled;
     }
 
-    public void MovePlayer(Vector3 endPos, float stopDistance)
+    public void MovePlayer(List<Tile> endPos, float stopDistance)
     {
         state = StateOfAction.Moving;
-        agent.SetDestination(endPos);
-        agent.stoppingDistance = stopDistance;
+        //agent.SetDestination(endPos);
+        //agent.stoppingDistance = stopDistance;
         //uniquement pour la next interaction n influe pas sur le deplacement whatsoever
-        positionToGo = endPos;
+        //positionToGo = endPos;
     }
 
     public void Interact()
@@ -129,11 +129,11 @@ public class Mb_Player : Mb_Poolable {
 
     void CheckingDistance()
     {
-        if (Vector3.Distance(transform.position, positionToGo) <= agent.stoppingDistance && onGoingInteraction != null && state == StateOfAction.Moving)
-        {
-            
+        // /!\ TO CHANGE
+        /*if (Vector3.Distance(transform.position, positionToGo) <= agent.stoppingDistance && onGoingInteraction != null && state == StateOfAction.Moving)
+        {            
                 Interact();
-        }
+        }*/
     }
 
     public void AddItem(Sc_Items itemToAdd)
