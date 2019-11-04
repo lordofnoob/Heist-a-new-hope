@@ -13,7 +13,7 @@ public class Mb_PoolManager : MonoBehaviour
     public ParticleSystem CallParticle(Vector3 position, float duration)
     {
         
-        return gameObject;
+        return particleSystem;
     }*/
 
 
@@ -23,6 +23,7 @@ public class Mb_PoolManager : MonoBehaviour
     }
 
 }
+
 [System.Serializable]
 public struct PrefabsPoolingParameters
 {
