@@ -5,23 +5,20 @@ using UnityEngine;
 
 public class Sc_Deplacement : Sc_Action
 {
-    public List<Tile> path;
+    public Tile destination;
     public Mb_Player toMove;
 
-    public Sc_Deplacement(int timeToPerform, Mb_Player toMove, List<Tile> path) : base(timeToPerform)
+    public Sc_Deplacement(float timeToPerform, Mb_Player toMove, Tile destination) : base(timeToPerform)
     {
         this.toMove = toMove;
-        this.path = path;
+        this.destination = destination;
     }
 
     public override void PerformAction()
     {
-        /*toMove.transform.DOMove(new Vector3(path[0].transform.position.x, 0.5f, path[0].transform.position.z), LevelManager.Instance.clock.tickInterval * timeToPerform).SetEase(Ease.Linear).OnComplete(() =>
-        {
-            toMove.playerTile = path[0];
-            Destroy(path[0].gameObject.GetComponent<Outlines>());
-            path.RemoveAt(0);
-            PerformAction();
-        });*/
+        //Debug.Log("MOVE TO : "+ destination.transform.position);
+        toMove.transform.DOMove(new Vector3(destination.transform.position.x, 0.5f, destination.transform.position.z), Ma_LevelManager.Instance.clock.tickInterval * timeToPerform).SetEase(Ease.Linear).OnComplete(() => {
+            toMove.nextAction = true;
+        });
     }
 }

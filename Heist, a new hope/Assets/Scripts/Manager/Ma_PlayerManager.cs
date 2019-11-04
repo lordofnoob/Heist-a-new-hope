@@ -68,7 +68,7 @@ public class Ma_PlayerManager : MonoBehaviour
                     }
 
                     List<Tile> ShortestPath = Ma_LevelManager.Instance.GetComponentInChildren<Pathfinder>().SearchForShortestPath(selectedPlayer.playerTile, hit.transform.GetComponent<Tile>());
-                    //selectedPlayer.MovePlayer(ShortestPath, 0f);
+                    selectedPlayer.AddDeplacement(ShortestPath);
                 }
                 else if (hit.transform.CompareTag("Trial")  && selectedPlayer !=null && selectedPlayer.state != Mb_Player.StateOfAction.Captured && selectedPlayer.state!= Mb_Player.StateOfAction.Interacting)
                 {
@@ -87,7 +87,7 @@ public class Ma_PlayerManager : MonoBehaviour
                         else
                             positionToAccomplishDuty = targetTrial.positionToGo[targetTrial.listOfUser.Count].position;
 
-                        //selectedPlayer.MovePlayer(positionToAccomplishDuty, 2f);
+                        //selectedPlayer.AddDeplacement(positionToAccomplishDuty);
                         selectedPlayer.SetNextInteraction(targetTrial);
                     }
                     

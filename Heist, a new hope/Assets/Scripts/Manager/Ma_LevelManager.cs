@@ -12,7 +12,7 @@ public class Ma_LevelManager : MonoBehaviour
     public GameObject PlayerPrefab;
     public GameObject IAPrefab;
 
-    public ClockManager clock;
+    public Ma_ClockManager clock;
     //public NavMeshSurface navMeshSurface;
 
     private Grid grid;
@@ -21,7 +21,7 @@ public class Ma_LevelManager : MonoBehaviour
     public void Awake()
     {
         Instance = this;
-        clock = GetComponentInChildren<ClockManager>();
+        clock = GetComponentInChildren<Ma_ClockManager>();
     }
 
     public void InitLevel()

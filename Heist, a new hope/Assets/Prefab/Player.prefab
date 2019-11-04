@@ -122,10 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolable: 1
   objectType: 0
-  characterProperty: {fileID: 0}
-  player: {fileID: 1926673876582789652}
+  characterProperty: {fileID: 11400000, guid: b89e47f476fb52a4bb7ca42ab77bb3f4, type: 2}
   highlightedColor: {r: 1, g: 0.73647493, b: 0, a: 0.50980395}
   selectedColor: {r: 1, g: 0.47614014, b: 0, a: 0.7921569}
+  actionsToPerform: []
   capturedHostages: []
   itemsHold: []
   highlighted: 0

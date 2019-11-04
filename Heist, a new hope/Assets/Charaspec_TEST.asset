@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0472492eeab14dd418036f6428b16a80, type: 3}
-  m_Name: New Sc_Charaspec
+  m_Name: Charaspec_TEST
   m_EditorClassIdentifier: 
   characterName: 
   characterPortrait: {fileID: 0}
   surveillanceLimit: 0
-  speed: 0
+  speed: 2
   characterSkills: 

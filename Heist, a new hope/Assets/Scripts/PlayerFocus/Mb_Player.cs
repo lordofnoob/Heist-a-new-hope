@@ -8,8 +8,11 @@ public class Mb_Player : Mb_Poolable {
 
     public Sc_Charaspec characterProperty;
     //[SerializeField] NavMeshAgent agent;
-    public Mb_Player player;
     public Color highlightedColor, selectedColor;
+
+    [Header("Actions")]
+    public List<Sc_Action> actionsToPerform = new List<Sc_Action>();
+    [HideInInspector] public bool nextAction = true;
 
     [Header("Hostage")]
     public List<Mb_IAHostage> capturedHostages = new List<Mb_IAHostage>();
@@ -53,6 +56,11 @@ public class Mb_Player : Mb_Poolable {
     private Vector3 positionToGo;
     float distanceRemaining;
 
+    private void Start()
+    {
+        Ma_ClockManager.Instance.tickTrigger.AddListener(PerformAction);
+    }
+
     void Update () 
     {
         CheckingDistance();
@@ -92,13 +100,26 @@ public class Mb_Player : Mb_Poolable {
         outline.enabled = enabled;
     }
 
-    public void MovePlayer(List<Tile> endPos, float stopDistance)
+    public void AddDeplacement(List<Tile> path)
     {
         state = StateOfAction.Moving;
-        //agent.SetDestination(endPos);
-        //agent.stoppingDistance = stopDistance;
+        foreach(Tile tile in path)
+        {
+            actionsToPerform.Add(new Sc_Deplacement(characterProperty.speed, this, tile));
+        }
+        
         //uniquement pour la next interaction n influe pas sur le deplacement whatsoever
         //positionToGo = endPos;
+    }
+
+    public void PerformAction()
+    {
+        if(actionsToPerform.Count != 0 && nextAction)
+        {
+            actionsToPerform[0].PerformAction();
+            nextAction = false;
+            actionsToPerform.RemoveAt(0);
+        }
     }
 
     public void Interact()
@@ -106,15 +127,15 @@ public class Mb_Player : Mb_Poolable {
         state = StateOfAction.Interacting;
         if (onGoingInteraction.listOfUser.Count==0)
         {
-            onGoingInteraction.listOfUser.Add(player);
+            onGoingInteraction.listOfUser.Add(this);
             onGoingInteraction.StartInteracting();
         }
         else
             for (int i =0; i<onGoingInteraction.listOfUser.Count; i++)
             {
-                if (onGoingInteraction.listOfUser[i] != player)
+                if (onGoingInteraction.listOfUser[i] != this)
                 {
-                    onGoingInteraction.listOfUser.Add(player);
+                    onGoingInteraction.listOfUser.Add(this);
                     onGoingInteraction.ReUpduateTiming();
                 }
             }
